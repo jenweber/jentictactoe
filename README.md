@@ -1,12 +1,10 @@
 # GA WDI Project 1 - Tic Tac Toe
 
-## Goals
+## My Goals
 
-At the beginning of each cohort, update the versions in
-[`package.json`](package.json) by replace all versions with a glob (`*`) and
-running `npm update --save && npm update --save-dev`. You may wish to test these
-changes by deleting the `node_modules` directory and running `npm install`.
-Fix any conflicts.
+Make it work
+Make it not-ugly
+Accomplish at least one bonus objective
 
 ## User Stories
 
