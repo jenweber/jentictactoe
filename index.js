@@ -14,7 +14,7 @@ require('expose?$!jquery');
 require('expose?jQuery!jquery');
 
 //establish game board
-var board = [['X', '', ''], ['O', '', ''], ['', '', '']];
+var board = [['X', 'A', 'O'], ['O', 'A', 'O'], ['', 'A', '']];
 
 //establish turn counter
 var turnCounter = 0;
@@ -28,8 +28,39 @@ var clearBoard = function() {
 var whoseTurn = function() {
     return turnCounter%2 === 0 ? "X" : "O";
 };
-
+//how to connect this with the html gameboard?
 var makeMove = function(row,column) {
     board[row][column] = whoseTurn();
+
+};
+//check to see if there are 3 in a row. Runs after every makeMove. REPLACE CONSOLE LOG WITH WINNER DISPLAY IN HTML
+var rowWin = function(){
+    var column = 0;
+    for (var row = 0; row < 3; row++) {
+        if ((board[row][column] === board[row][column+1]) && (board[row][column+1] === board[row][column+2])) {
+            return console.log(board[row][column] + ' is the winner!');
+        }
+    }
+    turnCounter+=1;
+};
+//check to see if there are 3 in a column. Runs after every makeMove. REPLACE CONSOLE LOG WITH WINNER DISPLAY IN HTML
+var columnWin = function(){
+    var row = 0;
+    for (var column = 0; column < 3; column++) {
+        if ((board[row][column] === board[row+1][column]) && (board[row+1][column] === board[row+2][column])) {
+            return console.log(board[row][column] + ' is the winner!');
+        }
+    }
+    turnCounter+=1;
+};
+//check for diagonal wins. Runs after every makeMove. REPLACE CONSOLE LOG WITH WINNER DISPLAY IN HTML
+var diagonalWin = function(){
+    var row = 0;
+    var column = 0;
+    if ((board[row][column] === board[row+1][column+1]) && (board[row+1][column+1] === board[row+2][column+2])) {
+            return console.log(board[row+1][column+1] + ' is the winner!');
+        } else if ((board[row][column+2] === board[row+1][column+1]) && (board[row+1][column+1] === board[row+2][column])){
+            return console.log(board[row+1][column+1] + ' is the winner!');
+        }
     turnCounter+=1;
 };
