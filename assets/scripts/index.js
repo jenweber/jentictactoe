@@ -36,40 +36,40 @@ var whoseTurn = function() {
 };
 
 //checks to see if there are 3 in a row. Runs after every makeMove. REPLACE CONSOLE LOG WITH WINNER DISPLAY IN HTML
-var rowWin = function(){
+var rowWin = function(currentBoard){
 
     var column = 0;
     for (var row = 0; row < 3; row++) {
-        if (((boardArray[row][column] === boardArray[row][column+1]) && (boardArray[row][column+1] === boardArray[row][column+2])) && boardArray[row][column] !== '') {
-            return console.log(boardArray[row][column] + ' is the winner!');
+        if (((currentBoard[row][column] === currentBoard[row][column+1]) && (currentBoard[row][column+1] === currentBoard[row][column+2])) && currentBoard[row][column] !== '') {
+            return console.log(currentBoard[row][column] + ' is the winner!');
         }
     }
 };
 //check to see if there are 3 in a column. Runs after every makeMove. REPLACE CONSOLE LOG WITH WINNER DISPLAY IN HTML
-var columnWin = function(){
+var columnWin = function(currentBoard){
     var row = 0;
     for (var column = 0; column < 3; column++) {
-        if (((boardArray[row][column] === boardArray[row+1][column]) && (boardArray[row+1][column] === boardArray[row+2][column])) && boardArray[row][column] !== '') {
-            return console.log(boardArray[row][column] + ' is the winner!');
+        if (((currentBoard[row][column] === currentBoard[row+1][column]) && (currentBoard[row+1][column] === currentBoard[row+2][column])) && currentBoard[row][column] !== '') {
+            return console.log(currentBoard[row][column] + ' is the winner!');
         }
     }
 };
 //check for diagonal wins. Runs after every makeMove. REPLACE CONSOLE LOG WITH WINNER DISPLAY IN HTML
-var diagonalWin = function(){
+var diagonalWin = function(currentBoard){
     var row = 0;
     var column = 0;
-    if (((boardArray[row][column] === boardArray[row+1][column+1]) && (boardArray[row+1][column+1] === boardArray[row+2][column+2])) && boardArray[row+1][column+1] !== '') {
-            return console.log(boardArray[row+1][column+1] + ' is the winner!');
-        } else if (((boardArray[row][column+2] === boardArray[row+1][column+1]) && (boardArray[row+1][column+1] === boardArray[row+2][column])) && boardArray[row+1][column+1] !== '') {
-            return console.log(boardArray[row+1][column+1] + ' is the winner!');
+    if (((currentBoard[row][column] === currentBoard[row+1][column+1]) && (currentBoard[row+1][column+1] === currentBoard[row+2][column+2])) && currentBoard[row+1][column+1] !== '') {
+            return console.log(currentBoard[row+1][column+1] + ' is the winner!');
+        } else if (((currentBoard[row][column+2] === currentBoard[row+1][column+1]) && (currentBoard[row+1][column+1] === currentBoard[row+2][column])) && currentBoard[row+1][column+1] !== '') {
+            return console.log(currentBoard[row+1][column+1] + ' is the winner!');
         }
 };
-//gameResult updates boardArray with the current game status, then checks to see if any conditions exist which would end the game.
+//gameResult updates boardArray with the current game status, then checks to see if any conditions exist which would end the game. The turn counter is advanced by 1 so that it becomes the other person's turn
 var gameResult = function () {
   var boardArray = getBoard();
-    rowWin();
-    columnWin();
-    diagonalWin();
+    rowWin(boardArray);
+    columnWin(boardArray);
+    diagonalWin(boardArray);
     turnCounter +=1;
     console.log(boardArray);
 };
