@@ -14,13 +14,13 @@ $(document).ready(() => {
 });
 console.log('functions are available');
 
-//turn current game board into a simple array
+//turn current game board into a simple array. Need to eliminate the use of this fn and create virtual array insteaad (boardArray)
 var getBoard = function () {
   return [[$("#a1").text(), $("#b1").text(), $("#c1").text()],
   [$("#a2").text(), $("#b2").text(), $("#c2").text()],
   [$("#a3").text(), $("#b3").text(), $("#c3").text()]];
 };
-//establish initial board
+//establish initial board - don't use getBoard anymore!
 var boardArray = getBoard();
 
 //establish turn counter
@@ -29,7 +29,7 @@ var turnCounter = 0;
 // gameStatus will toggle between active and inactive. Game becomes inactive upon a win/loss
 var gameStatus = "active";
 
-//clear the game board for a new round. $square refers to ALL squares
+//clear the game board for a new round. $square refers to ALL squares. NEED TO ADD clearboard to virtual gameboard
 var clearBoard = function() {
     $(".square").text("");
 };
@@ -119,6 +119,7 @@ var draw = function(currentBoard) {
 };
 
 //gameResult updates boardArray with the current game status, then checks to see if any conditions exist which would end the game. The turn counter is advanced by 1 so that it becomes the other person's turn. If statements prevent a win in two directions from registering twice
+//need to eliminate the use of getBoard
 var gameResult = function () {
   var boardArray = getBoard();
     rowWin(boardArray);
@@ -145,7 +146,7 @@ var validMove = function(moveAttempt) {
   }
 };
 
-// basic function to change the value of a square
+// basic function to change the value of a square. Need to base logic on virtual array. Need to add effect to virtual array and html
 $(".square").on("click", function() {
   if (validMove($(this).text()) === true) {
     $(this).text(whoseTurn());
@@ -156,4 +157,3 @@ $(".square").on("click", function() {
 
 //Need to add some change to the html that will show whose turn it is.
 //Need to add win/loss/draw counter
-//Need to add new game functionality
