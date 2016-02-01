@@ -15,10 +15,10 @@ require('expose?jQuery!jquery');
 
 // WHAT CODE GOES IN THIS FILE??? Migrated to index.js in assets/scripts
 //establish game board
-var board = [['', '', ''], ['', '', ''], ['', '', '']];
+//var board = [['', '', ''], ['', '', ''], ['', '', '']];
 
 //establish turn counter
-var turnCounter = 0;
+//var turnCounter = 0;
 
 // //CHANGE VAR TO CONST
 // var clearBoard = function() {

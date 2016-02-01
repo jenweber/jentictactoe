@@ -44,6 +44,9 @@ var playerO = {wins: 0,
 //calls clear the board - remove after testing
 clearBoard();
 
+//when the New Campaign button is clicked, the board clears
+$("#newCampaign").on("click", function() {clearBoard();});
+
 //Each session keeps a running turnCounter. If it's even, it's x's turn, and if odd, O's turn. This means that turns will always alternate, regardless of win/lose/draw since the board has an odd number of squares. CHANGE VAR TO CONST
 var whoseTurn = function() {
     return turnCounter%2 === 0 ? "X" : "O";

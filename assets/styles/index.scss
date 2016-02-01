@@ -10,24 +10,49 @@
   border-radius: 8px;
   line-height: 80px;
 }
+
 /*top, middle, and bottom classes clear the floats to create the separate rows*/
 .top {
   float: left;
 }
+
 .middle {
   clear: left;
   float: left;
 }
+
 .bottom {
   clear: left;
   float: left;
 }
+
+#newCampaign {
+  background-color: #933;
+  width: 160px;
+  height: 30px;
+  box-shadow: 5px 5px 5px #666666;
+  text-align: center;
+  clear: left;
+  border-radius: 8px;
+  line-height: 30px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+
+}
+
+#newCampaign:hover {
+  cursor: default;
+}
+
 #background2 {
 /*saved for later inset background*/
 }
+
 #xoxo {
     position: relative; top: 50%;         transform: translateY(-50%);
 }
+
 .gameboard {
   width: 80%;
 }
