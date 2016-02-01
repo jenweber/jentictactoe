@@ -12,7 +12,7 @@ require('../styles/index.scss');
 $(document).ready(() => {
   console.log('JS script is running');
 });
-console.log('here are my functions');
+console.log('functions are available');
 
 //turn current game board into a simple array
 var getBoard = function () {
@@ -34,6 +34,13 @@ var clearBoard = function() {
     $(".square").text("");
 };
 
+//start wins and losses counter for each player
+var playerX = {wins: 0,
+  losses: 0,
+};
+var playerO = {wins: 0,
+  losses: 0,
+};
 //calls clear the board - remove after testing
 clearBoard();
 
@@ -42,14 +49,28 @@ var whoseTurn = function() {
     return turnCounter%2 === 0 ? "X" : "O";
 };
 
+//defines what happens once winning conditions are met
+var afterWin = function() {
+  gameStatus = "inactive";
+  console.log(whoseTurn() + " is the winner!");
+  if (whoseTurn() === "X") {
+    playerX.wins+=1;
+    playerO.losses+=1;
+  } else {
+    playerO.wins+=1;
+    playerX.losses+=1;
+  }
+  console.log(playerX);
+  console.log(playerO);
+};
+
 //checks to see if there are 3 in a row. Runs after every makeMove. REPLACE CONSOLE LOG WITH WINNER DISPLAY IN HTML
 var rowWin = function(currentBoard){
 
     var column = 0;
     for (var row = 0; row < 3; row++) {
         if (((currentBoard[row][column] === currentBoard[row][column+1]) && (currentBoard[row][column+1] === currentBoard[row][column+2])) && currentBoard[row][column] !== '') {
-            gameStatus = "inactive";
-            return console.log(currentBoard[row][column] + ' is the winner!');
+          afterWin();
         }
     }
 };
@@ -59,8 +80,7 @@ var columnWin = function(currentBoard){
     var row = 0;
     for (var column = 0; column < 3; column++) {
         if (((currentBoard[row][column] === currentBoard[row+1][column]) && (currentBoard[row+1][column] === currentBoard[row+2][column])) && currentBoard[row][column] !== '') {
-            gameStatus = "inactive";
-            return console.log(currentBoard[row][column] + ' is the winner!');
+            afterWin();
         }
     }
 };
@@ -70,13 +90,12 @@ var diagonalWin = function(currentBoard) {
     var row = 0;
     var column = 0;
     if (((currentBoard[row][column] === currentBoard[row+1][column+1]) && (currentBoard[row+1][column+1] === currentBoard[row+2][column+2])) && currentBoard[row+1][column+1] !== '') {
-            gameStatus = "inactive";
-            return console.log(currentBoard[row+1][column+1] + ' is the winner!');
+            afterWin();
         } else if (((currentBoard[row][column+2] === currentBoard[row+1][column+1]) && (currentBoard[row+1][column+1] === currentBoard[row+2][column])) && currentBoard[row+1][column+1] !== '') {
-            gameStatus = "inactive";
-            return console.log(currentBoard[row+1][column+1] + ' is the winner!');
+          afterWin();
         }
 };
+
 var draw = function(currentBoard) {
   var isDraw = true;
   for (var i = 0; i < 3; i++) {
@@ -92,15 +111,23 @@ var draw = function(currentBoard) {
   }
 };
 
-//gameResult updates boardArray with the current game status, then checks to see if any conditions exist which would end the game. The turn counter is advanced by 1 so that it becomes the other person's turn
+//gameResult updates boardArray with the current game status, then checks to see if any conditions exist which would end the game. The turn counter is advanced by 1 so that it becomes the other person's turn. If statements prevent a win in two directions from registering twice
 var gameResult = function () {
   var boardArray = getBoard();
     rowWin(boardArray);
-    columnWin(boardArray);
-    diagonalWin(boardArray);
-    draw(boardArray);
+    if (gameStatus === "active") {
+      columnWin(boardArray);
+    }
+    if (gameStatus === "active") {
+      diagonalWin(boardArray);
+    }
+    if (gameStatus === "active") {
+      draw(boardArray);
+    }
     turnCounter +=1;
 };
+
+
 
 // check to see if a move has already been made in this square
 var validMove = function(moveAttempt) {
@@ -120,9 +147,6 @@ $(".square").on("click", function() {
 });
 
 
-
-
-//Need to add checking for a draw.
 //Need to add some change to the html that will show whose turn it is.
 //Need to add win/loss/draw counter
 //Need to add new game functionality
