@@ -15,36 +15,36 @@ $(document).ready(() => {
 console.log('functions are available');
 
 //turn current game board into a simple array. Need to eliminate the use of this fn and create virtual array insteaad (boardArray)
-var getBoard = function () {
-  return [[$("#a1").text(), $("#b1").text(), $("#c1").text()],
-  [$("#a2").text(), $("#b2").text(), $("#c2").text()],
-  [$("#a3").text(), $("#b3").text(), $("#c3").text()]];
-};
-//establish initial board - don't use getBoard anymore!
-var boardArray = getBoard();
+// var getBoard = function () {
+//   return [[$("#a1").text(), $("#b1").text(), $("#c1").text()],
+//   [$("#a2").text(), $("#b2").text(), $("#c2").text()],
+//   [$("#a3").text(), $("#b3").text(), $("#c3").text()]];
+// };
+
+//establish initial virutual board, a 3x3 grid
+var boardArray = ['', '', '', '', '', '', '', '', ''];
 
 //establish turn counter
 var turnCounter = 0;
 
-// gameStatus will toggle between active and inactive. Game becomes inactive upon a win/loss
+// gameStatus will toggle between active and inactive. Game becomes inactive upon a win/loss, becomes active again after player clicks new campaign
 var gameStatus = "active";
 
-//clear the game board for a new round. $square refers to ALL squares. NEED TO ADD clearboard to virtual gameboard
+//clear the web page board and virtual board for a new round. $square refers to ALL squares.
 var clearBoard = function() {
     $(".square").text("");
+    boardArray = ['', '', '', '', '', '', '', '', ''];
 };
 
-//start wins and losses counter for each player
+//initialize wins and losses counter for each player
 var playerX = {wins: 0,
   losses: 0,
 };
 var playerO = {wins: 0,
   losses: 0,
 };
-//calls clear the board - remove after testing
-clearBoard();
 
-//when the New Campaign button is clicked, the board clears
+//when the New Campaign button is clicked, the virtual and web page boards clear, status reset to active
 $("#newCampaign").on("click", function() {
   clearBoard();
   gameStatus = "active";
@@ -55,7 +55,7 @@ var whoseTurn = function() {
     return turnCounter%2 === 0 ? "X" : "O";
 };
 
-//defines what happens once winning conditions are met
+//defines what happens once winning conditions are met. REPLACE CONSOLE LOG WITH WINNER DISPLAY IN HTML
 var afterWin = function() {
   gameStatus = "inactive";
   console.log(whoseTurn() + " is the winner!");
@@ -71,38 +71,34 @@ var afterWin = function() {
   $("#scoreBoard").text(playerX.wins);
 };
 
-//checks to see if there are 3 in a row. Runs after every makeMove. REPLACE CONSOLE LOG WITH WINNER DISPLAY IN HTML
+//checks to see if there are 3 matching in a row. Does not count blank spaces as a match. Runs after every makeMove.
 var rowWin = function(currentBoard){
-
-    var column = 0;
-    for (var row = 0; row < 3; row++) {
-        if (((currentBoard[row][column] === currentBoard[row][column+1]) && (currentBoard[row][column+1] === currentBoard[row][column+2])) && currentBoard[row][column] !== '') {
-          afterWin();
-        }
-    }
+  for (var i = 0; i < 9; i+=3) {
+      if (((currentBoard[i] === currentBoard[i+1]) && (currentBoard[i] === currentBoard[i+2])) && currentBoard[i] !== '') {
+        afterWin();
+      }
+  }
 };
 
-//check to see if there are 3 in a column. Runs after every makeMove. REPLACE CONSOLE LOG WITH WINNER DISPLAY IN HTML
+//check to see if there are 3 in a column. Runs after every makeMove.
 var columnWin = function(currentBoard){
-    var row = 0;
-    for (var column = 0; column < 3; column++) {
-        if (((currentBoard[row][column] === currentBoard[row+1][column]) && (currentBoard[row+1][column] === currentBoard[row+2][column])) && currentBoard[row][column] !== '') {
-            afterWin();
-        }
+  for (var i = 0; i < 3; i+=1) {
+    if (((currentBoard[i] === currentBoard[i+3]) && (currentBoard[i] === currentBoard[i+6])) && currentBoard[i] !== '') {
+      afterWin();
+    }
+  }
+};
+
+//check for diagonal wins. Runs after every makeMove.
+var diagonalWin = function(currentBoard) {
+  if ((currentBoard[2] === currentBoard[4]) && (currentBoard[2] === currentBoard[6]) && (currentBoard[4] !== '')) {
+        afterWin();
+    } else if ((currentBoard[0] === currentBoard[4]) && (currentBoard[0] === currentBoard[8]) && (currentBoard[4] !== '')) {
+      afterWin();
     }
 };
 
-//check for diagonal wins. Runs after every makeMove. REPLACE CONSOLE LOG WITH WINNER DISPLAY IN HTML
-var diagonalWin = function(currentBoard) {
-    var row = 0;
-    var column = 0;
-    if (((currentBoard[row][column] === currentBoard[row+1][column+1]) && (currentBoard[row+1][column+1] === currentBoard[row+2][column+2])) && currentBoard[row+1][column+1] !== '') {
-            afterWin();
-        } else if (((currentBoard[row][column+2] === currentBoard[row+1][column+1]) && (currentBoard[row+1][column+1] === currentBoard[row+2][column])) && currentBoard[row+1][column+1] !== '') {
-          afterWin();
-        }
-};
-
+//checks to see if all spaces on the board have a value. Ends the game if they do.
 var draw = function(currentBoard) {
   var isDraw = true;
   for (var i = 0; i < 3; i++) {
@@ -118,26 +114,25 @@ var draw = function(currentBoard) {
   }
 };
 
-//gameResult updates boardArray with the current game status, then checks to see if any conditions exist which would end the game. The turn counter is advanced by 1 so that it becomes the other person's turn. If statements prevent a win in two directions from registering twice
+//gameResult updates boardArray with the current game status, then checks to see if any conditions exist which would end the game. The turn counter is advanced by 1 so that it becomes the other person's turn. If() statements prevent a win in two directions from registering twice
 //need to eliminate the use of getBoard
 var gameResult = function () {
-  var boardArray = getBoard();
-    rowWin(boardArray);
-    if (gameStatus === "active") {
-      columnWin(boardArray);
-    }
-    if (gameStatus === "active") {
-      diagonalWin(boardArray);
-    }
-    if (gameStatus === "active") {
-      draw(boardArray);
-    }
-    turnCounter +=1;
+  rowWin(boardArray);
+  if (gameStatus === "active") {
+    columnWin(boardArray);
+  }
+  if (gameStatus === "active") {
+    diagonalWin(boardArray);
+  }
+  if (gameStatus === "active") {
+    draw(boardArray);
+  }
+  turnCounter +=1;
 };
 
 
 
-// check to see if a move has already been made in this square
+// check to see if a move has already been made in this square. Prevents overwriting previous moves
 var validMove = function(moveAttempt) {
   if ((moveAttempt !== "O") && (moveAttempt !== "X") && (gameStatus === "active")) {
     return true;
