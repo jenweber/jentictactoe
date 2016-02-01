@@ -30,6 +30,7 @@
   background-color: #933;
   width: 160px;
   height: 30px;
+  margin: 5px;
   box-shadow: 5px 5px 5px #666666;
   text-align: center;
   clear: left;
@@ -40,6 +41,28 @@
   -ms-user-select: none;
 
 }
+
+.scorekeeping {
+  margin: 20px;
+  display: inline-block;
+}
+
+#scoreBoard {
+  background-color: #933;
+  width: 160px;
+  height: 200px;
+  margin: 5px;
+  box-shadow: 5px 5px 5px #666666;
+  text-align: center;
+  clear: left;
+  border-radius: 8px;
+  line-height: 200px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+
+}
+
 
 #newCampaign:hover {
   cursor: default;
@@ -54,5 +77,5 @@
 }
 
 .gameboard {
-  width: 80%;
+  width: 270px;
 }

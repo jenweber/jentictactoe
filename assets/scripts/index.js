@@ -45,7 +45,10 @@ var playerO = {wins: 0,
 clearBoard();
 
 //when the New Campaign button is clicked, the board clears
-$("#newCampaign").on("click", function() {clearBoard();});
+$("#newCampaign").on("click", function() {
+  clearBoard();
+  gameStatus = "active";
+});
 
 //Each session keeps a running turnCounter. If it's even, it's x's turn, and if odd, O's turn. This means that turns will always alternate, regardless of win/lose/draw since the board has an odd number of squares. CHANGE VAR TO CONST
 var whoseTurn = function() {
@@ -65,6 +68,7 @@ var afterWin = function() {
   }
   console.log(playerX);
   console.log(playerO);
+  $("#scoreBoard").text(playerX.wins);
 };
 
 //checks to see if there are 3 in a row. Runs after every makeMove. REPLACE CONSOLE LOG WITH WINNER DISPLAY IN HTML
