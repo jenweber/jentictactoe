@@ -21,8 +21,11 @@ console.log('functions are available');
 //   [$("#a3").text(), $("#b3").text(), $("#c3").text()]];
 // };
 
-//establish initial virutual board, a 3x3 grid
+//establish initial virtual board, a 3x3 grid
 var boardArray = ['', '', '', '', '', '', '', '', ''];
+
+// reference to determine index of the tic tac toe button clicked
+var translatedArray = ["a1", "b1", "c1", "a2", "b2", "c2", "a3", "b3", "c3"];
 
 //establish turn counter
 var turnCounter = 0;
@@ -128,9 +131,11 @@ var gameResult = function () {
   turnCounter +=1;
 };
 
+var translateArray = function(squareClicked) {
+  return translatedArray.indexOf(squareClicked);
+};
 
-
-// check to see if a move has already been made in this square. Prevents overwriting previous moves
+// LEFT OFF HERE check to see if a move has already been made in this square. Prevents overwriting previous moves
 var validMove = function(moveAttempt) {
   if ((moveAttempt !== "O") && (moveAttempt !== "X") && (gameStatus === "active")) {
     return true;
@@ -141,8 +146,10 @@ var validMove = function(moveAttempt) {
 
 // basic function to change the value of a square. Need to base logic on virtual array. Need to add effect to virtual array and html
 $(".square").on("click", function() {
-  if (validMove($(this).text()) === true) {
+  var index = translateArray($(this).attr('id'));
+  if (validMove(boardArray[index]) === true) {
     $(this).text(whoseTurn());
+    boardArray[index] = whoseTurn();
     gameResult();
   }
 });
