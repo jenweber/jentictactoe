@@ -101,11 +101,9 @@ var diagonalWin = function(currentBoard) {
 //checks to see if all spaces on the board have a value. Ends the game if they do.
 var draw = function(currentBoard) {
   var isDraw = true;
-  for (var i = 0; i < 3; i++) {
-    for (var j = 0; j < 3; j++) {
-      if (currentBoard[i][j] === "") {
-        isDraw = false;
-      }
+  for (var i = 0; i < 9; i++) {
+    if (currentBoard[i] === "") {
+      isDraw = false;
     }
   }
   if (isDraw === true) {
