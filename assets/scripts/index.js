@@ -48,7 +48,7 @@ var playerO = {wins: 0,
 };
 
 //when the New Campaign button is clicked, the virtual and web page boards clear, status reset to active
-$("#newCampaign").on("click", function() {
+$("#new-campaign").on("click", function() {
   clearBoard();
   gameStatus = "active";
 });
