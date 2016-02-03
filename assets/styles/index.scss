@@ -1,5 +1,5 @@
-// $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
-// @import '~bootstrap-sass/assets/stylesheets/bootstrap';
+$icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
+@import '~bootstrap-sass/assets/stylesheets/bootstrap';
 
 //header apppearance
 body {
@@ -126,7 +126,7 @@ body {
 }
 
 .candidate {
-  margin: 3%;
+  margin: 2%;
   float: left;
   height: 100px;
   line-height: 50px;
@@ -145,8 +145,13 @@ img {
   border-radius: 8px;
 }
 
-#hillary-win { position:absolute; top: 0; left: 0; z-index: 1; }
+#hillary-win {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
 
-#bernie-win { position:absolute; top: 0; left: 0; z-index: 1; }
+#bernie-win { position: absolute; top: 0; left: 0; z-index: 1; }
 
-#trump-draw { position:absolute; top: 0; left: 0; z-index: 1; }
+#trump-draw { position: absolute; top: 0; left: 0; z-index: 1; }

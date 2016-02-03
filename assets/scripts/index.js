@@ -14,13 +14,6 @@ $(document).ready(() => {
 });
 console.log('functions are available');
 
-//turn current game board into a simple array. Need to eliminate the use of this fn and create virtual array insteaad (boardArray)
-// var getBoard = function () {
-//   return [[$("#a1").text(), $("#b1").text(), $("#c1").text()],
-//   [$("#a2").text(), $("#b2").text(), $("#c2").text()],
-//   [$("#a3").text(), $("#b3").text(), $("#c3").text()]];
-// };
-
 //establish initial virtual board, a 3x3 grid
 var boardArray = ['', '', '', '', '', '', '', '', ''];
 
