@@ -33,18 +33,18 @@ var turnCounter = 0;
 // gameStatus will toggle between active and inactive. Game becomes inactive upon a win/loss, becomes active again after player clicks new campaign
 var gameStatus = "active";
 
-//clear the web page board and virtual board for a new round. $square refers to ALL squares.
-var clearBoard = function() {
-    $(".square").text("");
-    boardArray = ['', '', '', '', '', '', '', '', ''];
-};
-
 //initialize wins and losses counter for each player
 var playerX = {wins: 0,
   losses: 0,
 };
 var playerO = {wins: 0,
   losses: 0,
+};
+
+//clear the web page board and virtual board for a new round. $square refers to ALL squares.
+var clearBoard = function() {
+    $(".square").text("");
+    boardArray = ['', '', '', '', '', '', '', '', ''];
 };
 
 //when the New Campaign button is clicked, the virtual and web page boards clear, status reset to active
@@ -65,9 +65,11 @@ var afterWin = function() {
   if (whoseTurn() === "X") {
     playerX.wins+=1;
     playerO.losses+=1;
+    $('.player-x-score').text(playerX.wins);
   } else {
     playerO.wins+=1;
     playerX.losses+=1;
+    $('.player-o-score').text(playerX.wins);
   }
   console.log(playerX);
   console.log(playerO);
@@ -144,16 +146,25 @@ var validMove = function(moveAttempt) {
   }
 };
 
-// basic function to change the value of a square. Need to base logic on virtual array. Need to add effect to virtual array and html
+// When a square is clicked, its index position is located on the virtual array
+// If it is a valid move, the move is saved to the virtual array
+// If the move was x, apply one image. If the move was O, apply the other image.
+// Then the game checks for a winner, and adds one to the plus counter
+// Need to add effect to virtual array and html
 $(".square").on("click", function() {
   var index = translateArray($(this).attr('id'));
   if (validMove(boardArray[index]) === true) {
     $(this).text(whoseTurn());
     boardArray[index] = whoseTurn();
+    if (whoseTurn() === 'X') {
+      $(this).empty().append('<img src="/assets/images/hillary-logo.jpg" height="100px" width="100px">');
+    }
+    if (whoseTurn() === 'O') {
+      $(this).empty().append('<img src="/assets/images/bernie-logo.jpg" height="100px" width="100px">');
+    }
     gameResult();
   }
 });
-
 
 //Need to add some change to the html that will show whose turn it is.
 //Need to add win/loss/draw counter
