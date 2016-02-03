@@ -117,6 +117,21 @@ var draw = function(currentBoard) {
   }
 };
 
+
+// fades profile pics to show whose turn it is
+var turnAnimation = function() {
+  if (whoseTurn() === 'O') {
+    $("#hillary-profile").fadeTo( "slow" , 0.5);
+    $("#bernie-profile").fadeTo( "slow" , 1);
+  } else {
+    $("#hillary-profile").fadeTo( "slow" , 1);
+    $("#bernie-profile").fadeTo( "slow" , 0.5);
+  }
+};
+
+// applies initial fade when the page is first loaded
+turnAnimation();
+
 //gameResult updates boardArray with the current game status, then checks to see if any conditions exist which would end the game. The turn counter is advanced by 1 so that it becomes the other person's turn. If() statements prevent a win in two directions from registering twice
 //need to eliminate the use of getBoard
 var gameResult = function () {
@@ -131,6 +146,7 @@ var gameResult = function () {
     draw(boardArray);
   }
   turnCounter +=1;
+  turnAnimation();
 };
 
 var translateArray = function(squareClicked) {
@@ -165,6 +181,3 @@ $(".square").on("click", function() {
     gameResult();
   }
 });
-
-//Need to add some change to the html that will show whose turn it is.
-//Need to add win/loss/draw counter
