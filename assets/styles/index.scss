@@ -1,3 +1,6 @@
+// $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
+// @import '~bootstrap-sass/assets/stylesheets/bootstrap';
+
 //header apppearance
 body {
   background-color: #336699;
@@ -91,7 +94,8 @@ body {
   margin: 5px 0 0 20px;
   text-align: center;
   width: 310px;
-  padding: 5px
+  padding: 5px;
+  position: relative;
 }
 
 #xoxo {
@@ -140,3 +144,9 @@ body {
 img {
   border-radius: 8px;
 }
+
+#hillary-win { position:absolute; top: 0; left: 0; z-index: 1; }
+
+#bernie-win { position:absolute; top: 0; left: 0; z-index: 1; }
+
+#trump-draw { position:absolute; top: 0; left: 0; z-index: 1; }

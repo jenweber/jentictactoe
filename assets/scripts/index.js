@@ -51,6 +51,9 @@ var clearBoard = function() {
 $("#new-campaign").on("click", function() {
   clearBoard();
   gameStatus = "active";
+  $('#bernie-win').hide();
+  $('#hillary-win').hide();
+  $('#trump-draw').hide();
 });
 
 //Each session keeps a running turnCounter. If it's even, it's x's turn, and if odd, O's turn. This means that turns will always alternate, regardless of win/lose/draw since the board has an odd number of squares. CHANGE VAR TO CONST
@@ -66,13 +69,13 @@ var afterWin = function() {
     playerX.wins+=1;
     playerO.losses+=1;
     $('.player-x-score').text(playerX.wins);
+    $('#hillary-win').show();
   } else {
     playerO.wins+=1;
     playerX.losses+=1;
     $('.player-o-score').text(playerX.wins);
+    $('#bernie-win').show();
   }
-  console.log(playerX);
-  console.log(playerO);
   $("#scoreBoard").text(playerX.wins);
 };
 
@@ -113,7 +116,7 @@ var draw = function(currentBoard) {
   }
   if (isDraw === true) {
     gameStatus = "inactive";
-    console.log("the game is a draw");
+    $('#trump-draw').show();
   }
 };
 
@@ -131,6 +134,11 @@ var turnAnimation = function() {
 
 // applies initial fade when the page is first loaded
 turnAnimation();
+
+// applies initial hide of winner images
+$('#hillary-win').hide();
+$('#bernie-win').hide();
+$('#trump-draw').hide();
 
 //gameResult updates boardArray with the current game status, then checks to see if any conditions exist which would end the game. The turn counter is advanced by 1 so that it becomes the other person's turn. If() statements prevent a win in two directions from registering twice
 //need to eliminate the use of getBoard
