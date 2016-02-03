@@ -89,7 +89,7 @@ body {
   border-radius: 8px;
   box-shadow: 5px 5px 5px #003366;
   clear: left;
-  height: 200px;
+  height: 210px;
   line-height: 200px;
   margin: 5px 0 0 20px;
   text-align: center;
@@ -152,6 +152,22 @@ img {
   z-index: 1;
 }
 
-#bernie-win { position: absolute; top: 0; left: 0; z-index: 1; }
+#bernie-win {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1; }
 
-#trump-draw { position: absolute; top: 0; left: 0; z-index: 1; }
+#trump-draw {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.btn-primary {
+  background-color: lighten(#993333, 10%);
+  border: 0px;
+  padding: 5px;
+  font-family: Arial;
+}
