@@ -1,6 +1,8 @@
 $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
 @import '~bootstrap-sass/assets/stylesheets/bootstrap';
 
+$dusty-blue: #336699;
+
 //header apppearance
 body {
   background-color: #336699;
@@ -178,4 +180,46 @@ img {
   left: 10px;
   border: solid white 2px;
   border-radius: 8px;
+}
+
+@media (max-width: 720px) {
+  .med-red-stripe {
+    font-size: 20px;
+  }
+  .button-container {
+    position: relative;
+    border-style: none;
+  }
+
+  .square {
+    height: 60px;
+    width: 60px;
+  }
+
+  .gameboard {
+    height: 200px;
+    float: clear;
+  }
+
+  .btn-primary {
+    background-color: #6699cc;
+  }
+
+  .centering {
+    width: 230px;
+  }
+  #scoreboard {
+    width: 230px;
+  }
+
+  .profile-pic {
+    height: 40px;
+    width: 40px;
+    margin: 5px;
+  }
+
+  #hillary-profile {
+    height: 60px;
+    width: 60px;
+  }
 }
