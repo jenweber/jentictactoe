@@ -1,45 +1,49 @@
 $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
 @import '~bootstrap-sass/assets/stylesheets/bootstrap';
 
-$dusty-blue: #336699;
+$dusty-blue: #369;
+$amurrican-red: #933;
+$plain-white: #fff;
+$background-shadow: #036;
+$lighter-blue: #69c;
 
-//header apppearance
+
 body {
-  background-color: #336699;
+  background-color: $dusty-blue;
   width: 100%;
 }
 
 .thin-red-stripe {
-  width: 100%;
+  background-color: $amurrican-red;
   height: 20px;
-  background-color: #993333;
+  width: 100%;
 }
 
 .med-white-stripe {
-  width: 100%;
+  background-color: $plain-white;
   height: 20px;
-  background-color: #FFFFFF;
+  width: 100%;
 }
 
 .med-red-stripe {
-  width: 100%;
-  min-height: 60px;
-  background-color: #993333;
-  font-size: 40px;
+  background-color: $amurrican-red;
+  color: $plain-white;
   font-family: Arial Black, Gadget, sans-serif;
-  color: white;
+  font-size: 40px;
   line-height: 60px;
-  text-align: center;
   margin: auto;
+  min-height: 60px;
   padding: 0;
+  text-align: center;
+  width: 100%;
 }
 
 
 
 .square {
-  background-color: #FFFFFF;
+  background-color: $plain-white;
   border-radius: 8px;
-  box-shadow: 5px 5px 5px #003366;
+  box-shadow: 5px 5px 5px $background-shadow;
   float: left;
   height: 100px;
   line-height: 100px;
@@ -64,18 +68,18 @@ body {
 }
 
 #new-campaign {
-  background-color: #933;
+  background-color: $amurrican-red;
   border-radius: 8px;
-  box-shadow: 5px 5px 5px #003366;
+  box-shadow: 5px 5px 5px $background-shadow;
   clear: left;
+  color: $plain-white;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 20px;
   height: 100px;
+  line-height: 100px;
   margin: 10px 0 0 20px;
   text-align: center;
   width: 313px;
-  line-height: 100px;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 20px;
-  color: #FFFFFF;
 }
 
 #new-campaign:hover {
@@ -87,17 +91,17 @@ body {
 }
 
 #scoreboard {
-  background-color: #6699cc;
+  background-color: $lighter-blue;
   border-radius: 8px;
-  box-shadow: 5px 5px 5px #003366;
+  box-shadow: 5px 5px 5px $background-shadow;
   clear: left;
   height: 210px;
   line-height: 200px;
   margin: 5px 0 0 20px;
-  text-align: center;
-  width: 310px;
   padding: 5px;
   position: relative;
+  text-align: center;
+  width: 310px;
 }
 
 #xoxo {
@@ -111,36 +115,35 @@ body {
 }
 
 .centering {
-    width: 700px;
-    margin: 0 auto;
+  margin: 0 auto;
+  width: 700px;
 }
 
 .stripes {
-  box-shadow: 5px 5px 5px #003366;
+  box-shadow: 5px 5px 5px $background-shadow;
 }
 
 .profile-pic {
-  width: 110px;
+  border-radius: 8px;
   height: 110px;
   margin: 13px;
-  border-radius: 8px;
-
+  width: 110px;
 }
 
 .candidate {
-  margin: 2%;
   float: left;
   height: 100px;
   line-height: 50px;
+  margin: 2%;
 }
 
 .wins {
+  color: $plain-white;
+  display: inline;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 40px;
-  color: #FFFFFF;
   height: 20px;
   width: 20px;
-  display: inline;
 }
 
 img {
@@ -148,47 +151,48 @@ img {
 }
 
 #hillary-win {
+  left: 0;
   position: absolute;
   top: 0;
-  left: 0;
   z-index: 1;
 }
 
 #bernie-win {
+  left: 0;
   position: absolute;
   top: 0;
-  left: 0;
   z-index: 1; }
 
 #trump-draw {
+  left: 0;
   position: absolute;
   top: 0;
-  left: 0;
   z-index: 1;
 }
 
 .btn-primary {
-  background-color: lighten(#993333, 10%);
-  border: 0px;
-  padding: 5px;
+  background-color: lighten($amurrican-red, 10%);
+  border: 0;
   font-family: Arial;
+  padding: 5px;
 }
 
 .button-container {
+  border-radius: 8px;
+  border: solid $plain-white 2px;
+  left: 10px;
   position: absolute;
   top: 50px;
-  left: 10px;
-  border: solid white 2px;
-  border-radius: 8px;
 }
 
 @media (max-width: 720px) {
   .med-red-stripe {
     font-size: 20px;
   }
+
   .button-container {
-    position: relative;
     border-style: none;
+    position: relative;
   }
 
   .square {
@@ -197,25 +201,26 @@ img {
   }
 
   .gameboard {
-    height: 200px;
     float: clear;
+    height: 200px;
   }
 
   .btn-primary {
-    background-color: #6699cc;
+    background-color: $lighter-blue;
   }
 
   .centering {
     width: 230px;
   }
+
   #scoreboard {
     width: 100%;
   }
 
   .profile-pic {
     height: 40px;
-    width: 40px;
     margin: 5px;
+    width: 40px;
   }
 
   #hillary-profile {

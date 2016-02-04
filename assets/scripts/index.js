@@ -352,7 +352,7 @@ $(document).ready(() => {
     }).done(function(data) {
       console.log(data);
       console.log('history printed');
-      $('.history-goes-here').text(data);
+      $('.history-goes-here').text(JSON.stringify(data));
     }).fail(function(jqxhr) {
       console.error(jqxhr);
     });
