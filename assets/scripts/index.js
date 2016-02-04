@@ -34,11 +34,38 @@ var playerO = {wins: 0,
   losses: 0,
 };
 
+const myApp = {
+  baseUrl: 'http://tic-tac-toe.wdibos.com/',
+};
+
 //clear the web page board and virtual board for a new round. $square refers to ALL squares.
 var clearBoard = function() {
     $(".square").text("");
     boardArray = ['', '', '', '', '', '', '', '', ''];
 };
+
+//create an account
+const createServerGame = function() {
+    $.ajax({
+      url: myApp.baseUrl + '/games/',
+      method: 'POST',
+      headers: {
+        Authorization: 'Token token=' + myApp.user.token,
+      },
+      data:
+      {}
+    }).done(function(data) {
+      console.log(data);
+      console.log("server game created");
+      myApp.game = data.game;
+    }).fail(function(jqxhr) {
+      console.error(jqxhr);
+      console.log("server game creation failed");
+    });
+  };
+
+//initialize the Server Game upon refresh or first visit
+//  createServerGame();
 
 //when the New Campaign button is clicked, the virtual and web page boards clear, status reset to active
 $("#new-campaign").on("click", function() {
@@ -47,11 +74,17 @@ $("#new-campaign").on("click", function() {
   $('#bernie-win').hide();
   $('#hillary-win').hide();
   $('#trump-draw').hide();
+  createServerGame();
 });
 
-//Each session keeps a running turnCounter. If it's even, it's x's turn, and if odd, O's turn. This means that turns will always alternate, regardless of win/lose/draw since the board has an odd number of squares. CHANGE VAR TO CONST
+// Each session keeps a running turnCounter. If it's even, it's x's turn, and if odd, O's turn. This means that turns will always alternate, regardless of win/lose/draw since the board has an odd number of squares. CHANGE VAR TO CONST
 var whoseTurn = function() {
-    return turnCounter%2 === 0 ? "X" : "O";
+  return turnCounter%2 === 0 ? "X" : "O";
+};
+
+// Returns whoever went last. Used in ajax gameState fn
+var lastTurn = function() {
+  return turnCounter%2 === 0 ? "O" : "X";
 };
 
 //defines what happens once winning conditions are met. REPLACE CONSOLE LOG WITH WINNER DISPLAY IN HTML
@@ -163,6 +196,41 @@ var validMove = function(moveAttempt) {
   }
 };
 
+
+// update server with each move
+var saveState = function(index) {
+  let isActive;
+  if (gameStatus === "inactive") {
+    isActive = true;
+  } else {
+    isActive = false;
+  }
+  console.log("trying to update server with move");
+  $.ajax({
+    url: myApp.baseUrl + '/games/' + myApp.game.id,
+    method: 'PATCH',
+    headers: {
+      Authorization: 'Token token=' + myApp.user.token,
+    },
+    data: {
+      "game": {
+        "cell": {
+          "index": index,
+          "value": lastTurn(),
+        },
+        "over": isActive
+      }
+    }
+  })
+  .done(function(data) {
+    console.log('turn submitted');
+    myApp.game = data.game;
+  }).fail(function(jqxhr) {
+    console.error(jqxhr);
+    console.log("update to server failed");
+  });
+};
+
 // When a square is clicked, its index position is located on the virtual array
 // If it is a valid move, the move is saved to the virtual array
 // If the move was x, apply one image. If the move was O, apply the other image.
@@ -180,5 +248,94 @@ $(".square").on("click", function() {
       $(this).empty().append('<img src="/assets/images/bernie-logo.jpg" height="100px" width="100px">');
     }
     gameResult();
+    saveState(index);
   }
+});
+
+$(document).ready(() => {
+//create an account
+  $('#sign-up').on('submit', function(e) {
+    e.preventDefault();
+    var formData = new FormData(e.target);
+    $.ajax({
+      url: myApp.baseUrl + '/sign-up',
+      method: 'POST',
+      contentType: false,
+      processData: false,
+      data: formData,
+    }).done(function(data) {
+      console.log(data);
+      createServerGame();
+    }).fail(function(jqxhr) {
+      console.error(jqxhr);
+    });
+
+  });
+// sign in
+  $('#sign-in').on('submit', function(e) {
+    e.preventDefault();
+    var formData = new FormData(e.target);
+    $.ajax({
+      url: myApp.baseUrl + '/sign-in',
+      method: 'POST',
+      contentType: false,
+      processData: false,
+      data: formData,
+    }).done(function(data) {
+      myApp.user = data.user;
+      console.log(data);
+      createServerGame();
+    }).fail(function(jqxhr) {
+      console.error(jqxhr);
+    });
+
+  });
+//change pw
+  $('#change-password').on('submit', function(e) {
+    e.preventDefault();
+    console.log("begin change password");
+    if (!myApp.user) {
+      console.error('wrong');
+    }
+    var formData = new FormData(e.target);
+    $.ajax({
+      url: myApp.baseUrl + '/change-password/' + myApp.user.id,
+      method: 'PATCH',
+      headers: {
+        Authorization: 'Token token=' + myApp.user.token,
+      },
+      contentType: false,
+      processData: false,
+      data: formData,
+    }).done(function(data) {
+      console.log(data);
+      console.log('successfully changed password');
+    }).fail(function(jqxhr) {
+      console.error(jqxhr);
+    });
+  });
+//sign out - not yet working
+  $('#sign-out').on('submit', function(e) {
+    e.preventDefault();
+    if (!myApp.user) {
+      console.error('wrong');
+    }
+    var formData = new FormData(e.target);
+    $.ajax({
+      url: myApp.baseUrl + '/sign-out/' + myApp.user.id,
+      method: 'DELETE',
+      headers: {
+        Authorization: 'Token token=' + myApp.user.token,
+      },
+      contentType: false,
+      processData: false,
+      data: formData,
+    }).done(function(data) {
+      console.log(data);
+      console.log('signed out');
+    }).fail(function(jqxhr) {
+      console.error(jqxhr);
+    });
+  });
+
 });
