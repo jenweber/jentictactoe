@@ -33,9 +33,9 @@
 
         <div class="right-column">
           <div id="scoreboard">
-            <img id="hillary-win" src="assets/images/hillary-win.jpg" alt="Hillary Clinton" height="210" width="320">
-            <img id="bernie-win" src="assets/images/bernie-win.jpg" alt="Bernie Sanders" height="210" width="320">
-            <img id="trump-draw" src="assets/images/trump-draw.jpg" alt="Donald Trump" height="210" width="320">
+            <img id="hillary-win" src="assets/images/hillary-win.jpg" alt="Hillary Clinton" height="210" width="312">
+            <img id="bernie-win" src="assets/images/bernie-win.jpg" alt="Bernie Sanders" height="210" width="312">
+            <img id="trump-draw" src="assets/images/trump-draw.jpg" alt="Donald Trump" height="210" width="312">
             <div class="candidate">
               <div class="profile-pic">
                 <img id="hillary-profile" src="assets/images/hillary-profile.jpg" alt="Hillary Clinton" height="110" width="110">
@@ -53,20 +53,6 @@
         </div>
       </div>
     </div>
-<!-- buttons>
-    <div class= "button-container">
-      <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#signup">
-        Sign Up
-      </button>
-      <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#signin">
-        Sign In
-      </button>
-      <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#signout">
-        Sign Out
-      </button>
-    </div>
--->
-
 <!--Options Modal -->
     <div class="modal fade" id="options" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
       <div class="modal-dialog" role="document">
@@ -114,6 +100,11 @@
               </label>
               <input type="submit" name="submit" value="Submit">
             </form>
+            <form id="view-history">
+              <p><h3>View History:</h3></p>
+              <input type="submit" name="submit" value="Submit">
+              <div class="history-goes-here"></div>
+            </form>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -121,92 +112,8 @@
         </div>
       </div>
     </div>
-
-
-<!-- Sign Up Modal
-<div class="modal fade" id="signup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Sign Up</h4>
-      </div>
-      <div class="modal-body">
-        <form id="signup-form">
-                <div class="form-group">
-                  <label for="exampleInputEmail1">Email address</label>
-                  <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
-                </div>
-                <div class="form-group">
-                  <label for="exampleInputPassword1">Password</label>
-                  <input type="password" class="form-control" id="exampleInputPassword1" placeholder="your favorite animal">
-                </div>
-                <div class="password-note">
-                  *don't use a real password! Not a secure login
-                </div>
-              </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Submit</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<div class="modal fade" id="signin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Sign In</h4>
-      </div>
-      <div class="modal-body">
-        <form id="login">
-                <div class="form-group">
-                  <label for="exampleInputEmail1">Email address</label>
-                  <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
-                </div>
-                <div class="form-group">
-                  <label for="exampleInputPassword1">Password</label>
-                  <input type="password" class="form-control" id="exampleInputPassword1" placeholder="your favorite animal">
-                </div>
-                <div class="password-note">
-                  *don't use a real password! Not a secure login
-                </div>
-              </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Submit</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-
-<div class="modal fade" id="signout" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Sign Out</h4>
-      </div>
-      <div class="modal-body">
-        You have withdrawn from the elections. Thanks for playing!
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
--->
-
-      <script src="http://localhost:8080/webpack-dev-server.js"></script>
-      <script src="vendor.bundle.js" type="text/javascript" charset="utf-8"></script>
-      <script src="bundle.js" type="text/javascript" charset="utf-8"></script>
+    <script src="http://localhost:8080/webpack-dev-server.js"></script>
+    <script src="vendor.bundle.js" type="text/javascript" charset="utf-8"></script>
+    <script src="bundle.js" type="text/javascript" charset="utf-8"></script>
     </body>
 </html>

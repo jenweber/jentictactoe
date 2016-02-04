@@ -64,8 +64,6 @@ const createServerGame = function() {
     });
   };
 
-//initialize the Server Game upon refresh or first visit
-//  createServerGame();
 
 //when the New Campaign button is clicked, the virtual and web page boards clear, status reset to active
 $("#new-campaign").on("click", function() {
@@ -258,14 +256,14 @@ $(document).ready(() => {
     e.preventDefault();
     var formData = new FormData(e.target);
     $.ajax({
-      url: myApp.baseUrl + '/sign-up',
+      url: myApp.baseUrl + 'sign-up/',
       method: 'POST',
       contentType: false,
       processData: false,
       data: formData,
     }).done(function(data) {
       console.log(data);
-      createServerGame();
+      myApp.user = data.user;
     }).fail(function(jqxhr) {
       console.error(jqxhr);
     });
@@ -333,6 +331,28 @@ $(document).ready(() => {
     }).done(function(data) {
       console.log(data);
       console.log('signed out');
+    }).fail(function(jqxhr) {
+      console.error(jqxhr);
+    });
+  });
+//View game history WORKING ON THIS
+  $('#view-history').on('submit', function(e) {
+    e.preventDefault();
+    if (!myApp.user) {
+      console.error('wrong');
+    }
+    $.ajax({
+      url: myApp.baseUrl + 'games/',
+      method: 'GET',
+      headers: {
+        Authorization: 'Token token=' + myApp.user.token,
+      },
+      contentType: false,
+      processData: false,
+    }).done(function(data) {
+      console.log(data);
+      console.log('history printed');
+      $('.history-goes-here').text(data);
     }).fail(function(jqxhr) {
       console.error(jqxhr);
     });
