@@ -5,21 +5,14 @@
       <title>Tic Tac to the Elections</title>
     </head>
     <body>
+      <div class="button-container"><button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#options">
+        Options</button>
+      </div>
       <div class="stripes">
         <div class="thin-red-stripe"></div>
         <div class="med-white-stripe"></div>
         <div class="med-red-stripe">
-          Tic Tac to the Elections
-          <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#signup">
-      Sign Up
-    </button>
-    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#signin">
-      Sign In
-    </button>
-    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#signout">
-      Sign Out
-    </button>
+          <div>Tic Tac to the Elections</div>
         </div>
         <div class="med-white-stripe"></div>
         <div class="thin-red-stripe"></div>
@@ -39,7 +32,6 @@
         </div>
 
         <div class="right-column">
-
           <div id="scoreboard">
             <img id="hillary-win" src="assets/images/hillary-win.jpg" alt="Hillary Clinton" height="210" width="320">
             <img id="bernie-win" src="assets/images/bernie-win.jpg" alt="Bernie Sanders" height="210" width="320">
@@ -57,59 +49,118 @@
               <div class="player-o-score wins">0</div>
             </div>
           </div>
-
           <div id="new-campaign">New Campaign</div>
         </div>
       </div>
+    </div>
+<!-- buttons>
+    <div class= "button-container">
+      <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#signup">
+        Sign Up
+      </button>
+      <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#signin">
+        Sign In
+      </button>
+      <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#signout">
+        Sign Out
+      </button>
+    </div>
+-->
+
+<!--Options Modal -->
+    <div class="modal fade" id="options" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Account Options</h4>
+          </div>
+          <div class="modal-body">
+            <form id="sign-up">
+              <p><h3>Sign up:</h3></p>
+              <label>E-mail
+                <input type="text" name="credentials[email]" value="">
+              </label>
+              <label>Password
+                <input type="password" name="credentials[password]" value="">
+              </label>
+              <label>Confirm Password
+                <input type="password" name="credentials[password_confirmation]" value="">
+              </label>
+              <input type="submit" name="submit" value="Submit">
+              *Connection is unsecured. Don't use a real password!
+            </form>
+            <form id="sign-in">
+              <p><h3>Sign in:</h3></p>
+              <label>E-mail
+                <input type="text" name="credentials[email]" value="">
+              </label>
+              <label>Password
+                <input type="password" name="credentials[password]" value="">
+              </label>
+              <input type="submit" name="submit" value="Submit">
+            </form>
+            <form id="sign out">
+              <p><h3>Sign out:</h3></p>
+              <input type="submit" name="submit" value="Submit">
+            </form>
+            <form id="change-password">
+              <p><h3>Change password:</h3></p>
+              <label>Old Password
+                <input type="password" name="password[old]" value="">
+              </label>
+              <label>New Password
+                <input type="password" name="password[new]" value="">
+              </label>
+              <input type="submit" name="submit" value="Submit">
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
 
 
-
-<!-- Sign Up Modal -->
+<!-- Sign Up Modal
 <div class="modal fade" id="signup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+        <h4 class="modal-title" id="myModalLabel">Sign Up</h4>
       </div>
       <div class="modal-body">
-        <form id="login">
+        <form id="signup-form">
                 <div class="form-group">
                   <label for="exampleInputEmail1">Email address</label>
                   <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
                 </div>
                 <div class="form-group">
                   <label for="exampleInputPassword1">Password</label>
-                  <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                  <input type="password" class="form-control" id="exampleInputPassword1" placeholder="your favorite animal">
                 </div>
-                <div class="form-group">
-                  <label for="exampleInputFile">File input</label>
-                  <input type="file" id="exampleInputFile">
-                  <p class="help-block">Example block-level help text here.</p>
+                <div class="password-note">
+                  *don't use a real password! Not a secure login
                 </div>
-                <div class="checkbox">
-                  <label>
-                    <input type="checkbox"> Check me out
-                  </label>
-                </div>
-                <button type="submit" class="btn btn-default">Submit</button>
               </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-primary">Submit</button>
       </div>
     </div>
   </div>
 </div>
 
-<!-- Sign In Modal -->
+
 <div class="modal fade" id="signin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+        <h4 class="modal-title" id="myModalLabel">Sign In</h4>
       </div>
       <div class="modal-body">
         <form id="login">
@@ -119,69 +170,40 @@
                 </div>
                 <div class="form-group">
                   <label for="exampleInputPassword1">Password</label>
-                  <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                  <input type="password" class="form-control" id="exampleInputPassword1" placeholder="your favorite animal">
                 </div>
-                <div class="form-group">
-                  <label for="exampleInputFile">File input</label>
-                  <input type="file" id="exampleInputFile">
-                  <p class="help-block">Example block-level help text here.</p>
+                <div class="password-note">
+                  *don't use a real password! Not a secure login
                 </div>
-                <div class="checkbox">
-                  <label>
-                    <input type="checkbox"> Check me out
-                  </label>
-                </div>
-                <button type="submit" class="btn btn-default">Submit</button>
               </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-primary">Submit</button>
       </div>
     </div>
   </div>
 </div>
 
 
-<!-- Sign Out Modal -->
+
 <div class="modal fade" id="signout" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+        <h4 class="modal-title" id="myModalLabel">Sign Out</h4>
       </div>
       <div class="modal-body">
-        <form id="login">
-                <div class="form-group">
-                  <label for="exampleInputEmail1">Email address</label>
-                  <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
-                </div>
-                <div class="form-group">
-                  <label for="exampleInputPassword1">Password</label>
-                  <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-                </div>
-                <div class="form-group">
-                  <label for="exampleInputFile">File input</label>
-                  <input type="file" id="exampleInputFile">
-                  <p class="help-block">Example block-level help text here.</p>
-                </div>
-                <div class="checkbox">
-                  <label>
-                    <input type="checkbox"> Check me out
-                  </label>
-                </div>
-                <button type="submit" class="btn btn-default">Submit</button>
-              </form>
+        You have withdrawn from the elections. Thanks for playing!
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div>
   </div>
 </div>
-
+-->
 
       <script src="http://localhost:8080/webpack-dev-server.js"></script>
       <script src="vendor.bundle.js" type="text/javascript" charset="utf-8"></script>
