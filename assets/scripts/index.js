@@ -240,10 +240,10 @@ $(".square").on("click", function() {
     $(this).text(whoseTurn());
     boardArray[index] = whoseTurn();
     if (whoseTurn() === 'X') {
-      $(this).empty().append('<img src="/assets/images/hillary-logo.jpg" height="100px" width="100px">');
+      $(this).empty().append('<img src="https://raw.githubusercontent.com/jenweber/jentictactoe/gh-pages/assets/images/hillary-logo.jpg" height="100px" width="100px">');
     }
     if (whoseTurn() === 'O') {
-      $(this).empty().append('<img src="/assets/images/bernie-logo.jpg" height="100px" width="100px">');
+      $(this).empty().append('<img src="https://github.com/jenweber/jentictactoe/blob/gh-pages/assets/images/bernie-logo.jpg?raw=true" height="100px" width="100px">');
     }
     gameResult();
     saveState(index);
