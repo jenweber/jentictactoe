@@ -14,10 +14,15 @@ Some things I did that aided my development process included doing a mockup of t
 
 ## User Stories
 -A user may optionally register a username and password, then sign in, in order to have their games sent to the server
+
 -A user may log out at any time.
+
 -A user, when viewing the game board, can click on a square, which will add their icon to the board and make it the other player’s turn.
+
 -A usercan look to see whose turn it is, as indicated on the scoreboard.
+
 -A user, after completing the game, can see a display of who won the round
+
 -A user, after completing the game, can click new campaign, which will clear the board and change it to the other player’s turn first
 
 
