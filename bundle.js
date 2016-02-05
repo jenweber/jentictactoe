@@ -82,9 +82,6 @@ webpackJsonp([0],[
 
 	/* WEBPACK VAR INJECTION */(function($) {'use strict';
 
-	// user require with a reference to bundle the file and use it in this file
-	// var example = require('./example');
-
 	// use require without a reference to ensure a file is bundled
 
 	__webpack_require__(3);
@@ -93,23 +90,22 @@ webpackJsonp([0],[
 	__webpack_require__(4);
 
 	$(document).ready(function () {
-	  console.log('JS script is running');
+	  console.log('JavaScript is running');
 	});
-	console.log('functions are available');
 
-	//establish initial virtual board, a 3x3 grid
+	//establish initial virtual tic tac toe board, representing a 3x3 grid
 	var boardArray = ['', '', '', '', '', '', '', '', ''];
 
-	// reference to determine index of the tic tac toe button clicked
+	// array made of the html ids of each box on the grid. Will be used to determine the index of each move.
 	var translatedArray = ["a1", "b1", "c1", "a2", "b2", "c2", "a3", "b3", "c3"];
 
 	//establish turn counter
 	var turnCounter = 0;
 
-	// gameStatus will toggle between active and inactive. Game becomes inactive upon a win/loss, becomes active again after player clicks new campaign
+	// gameStatus will toggle between active and inactive. Game becomes inactive upon a win/loss/draw, and becomes active again after player clicks new campaign
 	var gameStatus = "active";
 
-	//initialize wins and losses counter for each player
+	// initialize wins and losses counter for each player, to be used on the scoreboard
 	var playerX = { wins: 0,
 	  losses: 0
 	};
@@ -117,17 +113,18 @@ webpackJsonp([0],[
 	  losses: 0
 	};
 
+	// This is the url of the server, used in AJAX requests
 	var myApp = {
 	  baseUrl: 'http://tic-tac-toe.wdibos.com/'
 	};
 
-	//clear the web page board and virtual board for a new round. $square refers to ALL squares.
+	// clear the web page board and virtual board for a new round. $square refers to ALL squares.
 	var clearBoard = function clearBoard() {
 	  $(".square").text("");
 	  boardArray = ['', '', '', '', '', '', '', '', ''];
 	};
 
-	//create an account
+	//using the form under Options, the user may create an account on the server
 	var createServerGame = function createServerGame() {
 	  $.ajax({
 	    url: myApp.baseUrl + '/games/',
@@ -156,17 +153,17 @@ webpackJsonp([0],[
 	  createServerGame();
 	});
 
-	// Each session keeps a running turnCounter. If it's even, it's x's turn, and if odd, O's turn. This means that turns will always alternate, regardless of win/lose/draw since the board has an odd number of squares. CHANGE VAR TO CONST
+	// Each session keeps a running turnCounter. If it's even, it's x's turn, and if odd, O's turn. This means that turns will always alternate, regardless of win/lose/draw since the board has an odd number of squares. CHANGE let TO CONST
 	var whoseTurn = function whoseTurn() {
 	  return turnCounter % 2 === 0 ? "X" : "O";
 	};
 
-	// Returns whoever went last. Used in ajax gameState fn
+	// Returns whoever went last. Used in ajax gameState function, as opposed to whoseTurn which says whoever's turn it currently is
 	var lastTurn = function lastTurn() {
 	  return turnCounter % 2 === 0 ? "O" : "X";
 	};
 
-	//defines what happens once winning conditions are met. REPLACE CONSOLE LOG WITH WINNER DISPLAY IN HTML
+	//a chain of events happen after winning conditions are met, changing the visuals, the score, and the gameStatus. REPLACE CONSOLE LOG WITH WINNER DISPLAY IN HTML
 	var afterWin = function afterWin() {
 	  gameStatus = "inactive";
 	  console.log(whoseTurn() + " is the winner!");
@@ -245,7 +242,6 @@ webpackJsonp([0],[
 	$('#trump-draw').hide();
 
 	//gameResult updates boardArray with the current game status, then checks to see if any conditions exist which would end the game. The turn counter is advanced by 1 so that it becomes the other person's turn. If() statements prevent a win in two directions from registering twice
-	//need to eliminate the use of getBoard
 	var gameResult = function gameResult() {
 	  rowWin(boardArray);
 	  if (gameStatus === "active") {
@@ -265,7 +261,7 @@ webpackJsonp([0],[
 	  return translatedArray.indexOf(squareClicked);
 	};
 
-	// LEFT OFF HERE check to see if a move has already been made in this square. Prevents overwriting previous moves
+	//  check to see if a move has already been made in this square. Prevents overwriting previous moves
 	var validMove = function validMove(moveAttempt) {
 	  if (moveAttempt !== "O" && moveAttempt !== "X" && gameStatus === "active") {
 	    return true;
@@ -310,8 +306,8 @@ webpackJsonp([0],[
 	// When a square is clicked, its index position is located on the virtual array
 	// If it is a valid move, the move is saved to the virtual array
 	// If the move was x, apply one image. If the move was O, apply the other image.
-	// Then the game checks for a winner, and adds one to the plus counter
-	// Need to add effect to virtual array and html
+	// After every move, the game checks for a winner, and adds one to the plus counter
+	// After every move, the game is sent to the server as well
 	$(".square").on("click", function () {
 	  var index = translateArray($(this).attr('id'));
 	  if (validMove(boardArray[index]) === true) {
@@ -411,7 +407,7 @@ webpackJsonp([0],[
 	      console.error(jqxhr);
 	    });
 	  });
-	  //View game history WORKING ON THIS
+	  //View game history
 	  $('#view-history').on('submit', function (e) {
 	    e.preventDefault();
 	    if (!myApp.user) {
