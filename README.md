@@ -27,12 +27,12 @@ Some things I did that aided my development process included doing a mockup of t
 -A user, after completing the game, can click new campaign, which will clear the board and change it to the other player’s turn first
 
 
-##  Wireframes
+##  Project Planning
 
-Initial wireframes [A](https://drive.google.com/file/d/0BxL5EMSDOzzwVDEwOUpkUFpqMDlqYVJNSXhRZW15ajBXVS0w/view?usp=sharing) and [B](https://drive.google.com/file/d/0BxL5EMSDOzzwSkprX3NWQU11SUVSaWZrVU1qX0sxdjV3MjBj/view?usp=sharing)
+Wireframes [A](https://drive.google.com/file/d/0BxL5EMSDOzzwVDEwOUpkUFpqMDlqYVJNSXhRZW15ajBXVS0w/view?usp=sharing) and [B](https://drive.google.com/file/d/0BxL5EMSDOzzwSkprX3NWQU11SUVSaWZrVU1qX0sxdjV3MjBj/view?usp=sharing)
 
+Code Structure [Diagram](https://drive.google.com/file/d/0BxL5EMSDOzzwSWRzQ1JwcUgweWt5WWtRVDVDOFZycEdIRkpB/view?usp=sharing)
+For every click that is a valid move, there are 3 main results. The visuals are updated, the virtual array is edited to save the move, and the move is sent to the server. This modular design allows for easy changes to one system without affecting the other 2 aspects.
 
-## [License](LICENSE)
-
-Source code distributed under the MIT license. Text and other assets copyright
-General Assembly, Inc., all rights reserved.
+Visuals [Mockup](https://drive.google.com/file/d/0BxL5EMSDOzzwVzhiM013MC16dVE/view?usp=sharing)
+Once I was able to use jQuery to make changes to the visual board, I created this static mockup of the look I wanted to have in the end. Then, I recreated it in CSS and html. This approach helped me push through some tricky CSS and try some new things, since I had a goal in mind.
