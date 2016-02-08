@@ -1,4 +1,5 @@
 # GA WDI Project 1 - Tic Tac Toe
+<a href="http://jenweber.github.io/jentictactoe/">Project link</a>
 
 ## My Goals
 This game is my first deployed web app, created during week 3 of the General Assembly Web Development Bootcamp. Above and beyond having a working product, I wanted to offer a new experience to the user, since so many people are familiar with tic tac toe already. Although the political theme will quickly become outdated, the prospect of having something that I was proud of, that has a punchline, was such a motivator that I decided to keep that theme, and re-skin it later if needed.
