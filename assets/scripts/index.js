@@ -263,9 +263,11 @@ $(document).ready(() => {
       data: formData,
     }).done(function(data) {
       console.log(data);
+      alert('Thanks for registering! Please sign in to continue.');
       myApp.user = data.user;
     }).fail(function(jqxhr) {
       console.error(jqxhr);
+      alert('Passwords do not match. Please try again.');
     });
 
   });
@@ -283,8 +285,10 @@ $(document).ready(() => {
       myApp.user = data.user;
       console.log(data);
       createServerGame();
+      $('#options').modal('toggle');
     }).fail(function(jqxhr) {
       console.error(jqxhr);
+      alert('Invalid email and password combination');
     });
 
   });
@@ -310,9 +314,10 @@ $(document).ready(() => {
       console.log('successfully changed password');
     }).fail(function(jqxhr) {
       console.error(jqxhr);
+      alert('Please log in before changing your password.');
     });
   });
-//sign out - not yet working
+//sign out
   $('#sign-out').on('submit', function(e) {
     e.preventDefault();
     if (!myApp.user) {
@@ -331,6 +336,8 @@ $(document).ready(() => {
     }).done(function(data) {
       console.log(data);
       console.log('signed out');
+      $('#options').modal('toggle');
+      alert('You are now logged out.');
     }).fail(function(jqxhr) {
       console.error(jqxhr);
     });
@@ -355,6 +362,7 @@ $(document).ready(() => {
       $('.history-goes-here').text(JSON.stringify(data));
     }).fail(function(jqxhr) {
       console.error(jqxhr);
+      alert('Please log in before viewing history.');
     });
   });
 
