@@ -94,7 +94,7 @@ let afterWin = function() {
   } else {
     playerO.wins+=1;
     playerX.losses+=1;
-    $('.player-o-score').text(playerX.wins);
+    $('.player-o-score').text(playerO.wins);
     $('#bernie-win').show();
   }
   $("#scoreBoard").text(playerX.wins);
@@ -331,7 +331,7 @@ $(document).ready(() => {
       console.error(jqxhr);
     });
   });
-//View game history 
+//View game history
   $('#view-history').on('submit', function(e) {
     e.preventDefault();
     if (!myApp.user) {
