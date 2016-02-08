@@ -150,6 +150,7 @@ webpackJsonp([0],[
 	  $('#bernie-win').hide();
 	  $('#hillary-win').hide();
 	  $('#trump-draw').hide();
+	  $('#new-campaign').text('New Campaign');
 	  createServerGame();
 	});
 
@@ -172,11 +173,13 @@ webpackJsonp([0],[
 	    playerO.losses += 1;
 	    $('.player-x-score').text(playerX.wins);
 	    $('#hillary-win').show();
+	    $('#new-campaign').text('Hillary wins! Play again?');
 	  } else {
 	    playerO.wins += 1;
 	    playerX.losses += 1;
-	    $('.player-o-score').text(playerX.wins);
+	    $('.player-o-score').text(playerO.wins);
 	    $('#bernie-win').show();
+	    $('#new-campaign').text('Bernie wins! Play again?');
 	  }
 	  $("#scoreBoard").text(playerX.wins);
 	};
@@ -219,6 +222,7 @@ webpackJsonp([0],[
 	  if (isDraw === true) {
 	    gameStatus = "inactive";
 	    $('#trump-draw').show();
+	    $('#new-campaign').text('Draw! Play again?');
 	  }
 	};
 
@@ -337,9 +341,11 @@ webpackJsonp([0],[
 	      data: formData
 	    }).done(function (data) {
 	      console.log(data);
+	      alert('Thanks for registering! Please sign in to continue.');
 	      myApp.user = data.user;
 	    }).fail(function (jqxhr) {
 	      console.error(jqxhr);
+	      alert('Passwords do not match. Please try again.');
 	    });
 	  });
 	  // sign in
@@ -356,8 +362,10 @@ webpackJsonp([0],[
 	      myApp.user = data.user;
 	      console.log(data);
 	      createServerGame();
+	      $('#options').modal('toggle');
 	    }).fail(function (jqxhr) {
 	      console.error(jqxhr);
+	      alert('Invalid email and password combination');
 	    });
 	  });
 	  //change pw
@@ -382,9 +390,10 @@ webpackJsonp([0],[
 	      console.log('successfully changed password');
 	    }).fail(function (jqxhr) {
 	      console.error(jqxhr);
+	      alert('Please log in before changing your password.');
 	    });
 	  });
-	  //sign out - not yet working
+	  //sign out
 	  $('#sign-out').on('submit', function (e) {
 	    e.preventDefault();
 	    if (!myApp.user) {
@@ -403,6 +412,8 @@ webpackJsonp([0],[
 	    }).done(function (data) {
 	      console.log(data);
 	      console.log('signed out');
+	      $('#options').modal('toggle');
+	      alert('You are now logged out.');
 	    }).fail(function (jqxhr) {
 	      console.error(jqxhr);
 	    });
@@ -427,6 +438,7 @@ webpackJsonp([0],[
 	      $('.history-goes-here').text(JSON.stringify(data));
 	    }).fail(function (jqxhr) {
 	      console.error(jqxhr);
+	      alert('Please log in before viewing history.');
 	    });
 	  });
 	});
