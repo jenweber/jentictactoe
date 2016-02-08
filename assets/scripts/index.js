@@ -69,6 +69,7 @@ $("#new-campaign").on("click", function() {
   $('#bernie-win').hide();
   $('#hillary-win').hide();
   $('#trump-draw').hide();
+  $('#new-campaign').text('New Campaign');
   createServerGame();
 });
 
@@ -91,11 +92,13 @@ let afterWin = function() {
     playerO.losses+=1;
     $('.player-x-score').text(playerX.wins);
     $('#hillary-win').show();
+    $('#new-campaign').text('Hillary wins! Play again?');
   } else {
     playerO.wins+=1;
     playerX.losses+=1;
     $('.player-o-score').text(playerO.wins);
     $('#bernie-win').show();
+    $('#new-campaign').text('Bernie wins! Play again?');
   }
   $("#scoreBoard").text(playerX.wins);
 };
@@ -138,6 +141,7 @@ let draw = function(currentBoard) {
   if (isDraw === true) {
     gameStatus = "inactive";
     $('#trump-draw').show();
+    $('#new-campaign').text('Draw! Play again?');
   }
 };
 
